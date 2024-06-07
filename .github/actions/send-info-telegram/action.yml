@@ -1,0 +1,36 @@
+# .github/actions/send-info-telegram/action.yml
+name: Send Info Telegram
+description: Send workflow info via Telegram
+inputs:
+  bot_token:
+    description: 'Telegram Bot Token'
+    required: true
+  chat_id:
+    description: 'Telegram Chat ID'
+    required: true
+  parse_mode:
+    description: 'Parse mode for the message'
+    required: false
+    default: 'Markdown'
+runs:
+  using: "composite"
+  steps:
+    - name: Send Telegram
+      uses: brainxio/telegram-bot-action@v1
+      with:
+        bot_token: ${{ inputs.bot_token }}
+        chat_id: ${{ inputs.chat_id }}
+        message: |
+          🤖 (Hey! It's me, ${{ github.actor }} from ${{ github.owner }}, please be informed about this..)
+
+          🔍 **Workflow Details**
+
+          🏷️ Repository: `${{ github.repository }}`
+          🌿 Branch: `${{ github.ref_name }}`
+          🔧 Workflow Name: `${{ github.workflow }}`
+          🏃 Run ID: `${{ github.run_id }}`
+          🔢 Run Number: `${{ github.run_number }}`
+          🔁 Run Attempt: `${{ github.run_attempt }}`
+
+          ⚡️ *Sending this message via GitHub Actions from your friendly neighborhood bot*
+        parse_mode: ${{ inputs.parse_mode }}
