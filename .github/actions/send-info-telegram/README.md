@@ -1,7 +1,3 @@
-Here's the Markdown documentation for the "Send Info Telegram" GitHub Actions action:
-
----
-
 # 📲 Send Info Telegram Action
 
 This action sends workflow information via Telegram, allowing you to stay informed about your GitHub Actions workflows.
@@ -51,7 +47,3 @@ jobs:
     chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
     parse_mode: markdown
 ```
-
----
-
-Feel free to customize the message and integrate this action into your workflows to receive updates via Telegram! If you have any questions or need further assistance, feel free to ask.
