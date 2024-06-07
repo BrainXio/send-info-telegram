@@ -1,0 +1,20 @@
+name: Send Workflow Info
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-info-telegram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Send Info Telegram
+        uses: ./.github/actions/send-info-telegram
+        with:
+          bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+          parse_mode: markdown
